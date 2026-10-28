@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: gmail-organizer
+  main:
+    banner-mode: "off"
+
+server:
+  port: 8080
+
+gmail:
+  api:
+    base-url: https://gmail.googleapis.com/gmail/v1
+    default-page-size: 10
+    max-page-size: 100
+  oauth:
+    client-id: ${GOOGLE_CLIENT_ID:}
+    client-secret: ${GOOGLE_CLIENT_SECRET:}
+    client-secret-file: credentials/credentials.json
+    token-directory: tokens
+    user-key: primary-user
+    callback-port: 8888
+    scopes:
+      - https://www.googleapis.com/auth/gmail.readonly
+
+logging:
+  level:
+    root: INFO
+    com.gmail.organizer: INFO
+  pattern:
+    console: "%d{yyyy-MM-dd'T'HH:mm:ss.SSSXXX} %-5level [%X{requestUid:-no-request-id}] [%thread] %logger{36} - %msg%n"
